@@ -1,3 +1,9 @@
+@import "twitter/bootstrap/bootstrap";
+
+body { padding-top: 50px; }
+
+@import "twitter/bootstrap/responsive";
+
 body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {
@@ -66,5 +72,4 @@ table, td, th { vertical-align: middle !important; border: none !important; }
 th { border-bottom: 1px solid #DDD !important; }
 td.picture { width: 140px; }
 td.picture img { width: 140px; }
-
 
