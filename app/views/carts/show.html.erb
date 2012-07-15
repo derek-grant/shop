@@ -6,7 +6,7 @@
       <li> <%= item.quantity %> &times; <%= item.product.name %></li>
   <% end %>
 </ul>
-
+	Total Price: <%= @cart.total_price %>
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>
