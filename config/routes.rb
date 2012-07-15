@@ -1,4 +1,4 @@
-Shop::Application.routes.draw do
+LaptopShop1::Application.routes.draw do
   resources :line_items
 
   resources :carts
@@ -7,7 +7,12 @@ Shop::Application.routes.draw do
 
   get "welcome/home"
 
+  get "welcome/thank_you"
+  get "welcome/register"
+
   resources :products
+  resources :users
+  resources :sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -59,19 +64,14 @@ Shop::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => "welcome", :action => "home"
-  get "welcome/thank_you"
-  get "welcome/register"
-  resources :products
-  resources :users
-  resources :sessions
-
-  match '/your_cart' => "carts#your_cart", :as => "your_cart"
-  match '/login' => "sessions#new", :as => "login"
-  match '/logout' => "sessions#destroy", :as => "logout"
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+
+  match '/your_cart' => "carts#your_cart", :as => "your_cart"
+  match '/login' => "sessions#new", :as => "login"
+  match '/logout' => "sessions#destroy", :as => "logout"
 end

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Shop::Application.config.secret_token = '7986310be3d1433791ccf59103e7f7f0364de8f594bbabb566a916b12cabd97dae33f73712281564b09b823835efa8a87ae88b573f6a43fc44ab18ed6eebf73e'
+LaptopShop1::Application.config.secret_token = 'ffb9f060f01eac3d0177667bdeeba2a1199b19bab67edfe86efcb6a4510b1a1a7215c3c06c79f2bc04e7d3ebb5e0b1d46223af276e327b7ff754651a295f43fd'

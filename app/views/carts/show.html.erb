@@ -1,13 +1,12 @@
+<p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
-
-<p id="notice">
-  <%= notice %>
-</p>
 <h2>Your Cart</h2>
 <ul>
   <% for item in @cart.line_items %>
-      <li><%= item.product.name %></li>
+      <li> <%= item.quantity %> &times; <%= item.product.name %></li>
   <% end %>
 </ul>
+
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>

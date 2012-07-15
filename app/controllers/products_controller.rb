@@ -1,7 +1,8 @@
 class ProductsController < ApplicationController
+  before_filter :authenticate, :except => [:index, :show]
+
   # GET /products
   # GET /products.xml
-  before_filter :authenticate, :except => [:index, :show]
   def index
     @products = Product.search(params[:search_query])
 
@@ -41,6 +42,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.xml
   def create
+    #@product = Product.new(params[:product])
     @product = current_user.products.new(params[:product])
 
     respond_to do |format|
