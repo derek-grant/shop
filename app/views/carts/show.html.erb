@@ -4,9 +4,10 @@
 <ul>
   <% for item in @cart.line_items %>
       <li> <%= item.quantity %> &times; <%= item.product.name %></li>
-  <% end %>
+  <% end %><br/>
+	Total Price: <%= @cart.total_price %><br/>
+<br/>
+<%= button_to 'Empty cart', @cart, :method => :delete, :confirm => 'Are you sure?' %>
 </ul>
-	Total Price: <%= @cart.total_price %>
-
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>
