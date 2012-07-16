@@ -2,6 +2,9 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
+  def index
+    @users = User.find(:all)
+  end
 
   def create
     @user = User.new(params[:user])
