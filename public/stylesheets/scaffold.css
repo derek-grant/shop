@@ -20,7 +20,7 @@ pre {
 
 a { color: #000; }
 a:visited { color: #666; }
-a:hover { color: #fff; background-color:#000; }
+a:hover { color: #fff; background-color:#000;text-decoration: none; }
 
 div.field, div.actions {
   margin-bottom: 10px;
@@ -68,8 +68,11 @@ div.field, div.actions {
 }
 body { padding-top: 100px; }
 footer { margin-top: 100px; }
-table, td, th { vertical-align: middle !important; border: none !important; }
-th { border-bottom: 1px solid #DDD !important; }
+table, td, th { vertical-align: middle !important; border: none !important;padding-left: 2em;text-align: left; }
+th { border-bottom: 1px solid #DDD !important; margin-left: 1em;}
 td.picture { width: 140px; }
 td.picture img { width: 140px; }
 
+.navbar-search .input-prepend {
+    margin-bottom: 0;
+}

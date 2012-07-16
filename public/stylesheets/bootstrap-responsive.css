@@ -705,6 +705,7 @@
     padding-right: 10px;
     padding-left: 10px;
     margin: 0 0 0 -5px;
+    text-decoration-style:none;
   }
   .nav-collapse {
     clear: both;

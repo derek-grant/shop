@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing products</h1>
+<h1>Clothes Range</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Type</th>
     <th>Description</th>
     <th>Price</th>
     <th>UserID</th>
@@ -19,6 +19,7 @@
     <td><%= product.description %></td>
 	<!-- number to currency (product.price, :unit => "&euro;") -->
     <td><%= product.price %></td>
+
     <td><%= product.user_id %></td>
     <td><%= link_to 'Show', product %></td>
 	<% if current_user.admin %>

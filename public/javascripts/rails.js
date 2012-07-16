@@ -189,3 +189,4 @@
     }
   });
 })();
+('.dropdown-toggle').dropdown()

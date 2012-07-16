@@ -1,6 +1,9 @@
 LaptopShop1::Application.routes.draw do
-  resources :line_items
 
+  resources :line_items
+  resources :products
+  resources :users
+  resources :sessions
   resources :carts
 
   get "users/new"
@@ -10,9 +13,6 @@ LaptopShop1::Application.routes.draw do
   get "welcome/thank_you"
   get "welcome/register"
 
-  resources :products
-  resources :users
-  resources :sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
