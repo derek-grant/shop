@@ -11,3 +11,4 @@ Product.create(:name => 'Apple Macbook Pro', :description => 'Unibody alu Mac wi
 Product.create(:name => 'Lenovo Thinkpad', :description => 'Like an IBM laptop', :price => '899.99')
 Product.create(:name => 'Dell', :description => 'Special Offer', :price => '499.99')
 Product.create(:name => 'Sony', :description => 'Huge fancy screen laptop', :price => '2000.99')
+Product.create(:name => 'Sony', :description => 'Huge fancy screen laptop', :price => '2000.99', :size => xl)

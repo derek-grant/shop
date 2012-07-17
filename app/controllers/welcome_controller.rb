@@ -6,5 +6,6 @@ class WelcomeController < ApplicationController
   end
 
   def register
+    @User = User.new
   end
 end

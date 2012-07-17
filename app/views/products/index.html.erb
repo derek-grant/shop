@@ -6,10 +6,10 @@
   <tr>
     <th>Type</th>
     <th>Description</th>
+    <th>Available Sizes</th>
     <th>Price</th>
-    <th>UserID</th>
-    <th></th>
-    <th></th>
+    <th>User ID</th>
+    <th>Image</th>
     <th></th>
   </tr>
 
@@ -18,9 +18,10 @@
     <td><%= product.name %></td>
     <td><%= product.description %></td>
 	<!-- number to currency (product.price, :unit => "&euro;") -->
+    <td><%= product.size %></td>
     <td><%= product.price %></td>
-
     <td><%= product.user_id %></td>
+    <td><%= product.column_size %></td>
     <td><%= link_to 'Show', product %></td>
 	<% if current_user.try(:admin?) %>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
