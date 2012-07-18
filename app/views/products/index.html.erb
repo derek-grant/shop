@@ -8,7 +8,9 @@
     <th>Description</th>
     <th>Available Sizes</th>
     <th>Price</th>
+    <% if current_user.try(:admin?) %>
     <th>User ID</th>
+    <% end %>
     <th>Image</th>
     <th></th>
   </tr>
@@ -20,14 +22,17 @@
 	<!-- number to currency (product.price, :unit => "&euro;") -->
     <td><%= product.size %></td>
     <td><%= product.price %></td>
-    <td><%= product.user_id %></td>
     <td><%= product.column_size %></td>
     <td><%= link_to 'Show', product %></td>
 	<% if current_user.try(:admin?) %>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-    <td><%= button_to 'Add to Cart', line_items_path(:product_id => product) %></td>
+    <% if logged_in? %>
+        <td><%= product.user_id %></td>
+        <td><%= button_to 'Add to Cart', line_items_path(:product_id => product) %></td>
+    <% end %>
+
   </tr>
 <% end %>
 </table>
@@ -36,6 +41,7 @@
     <p>
         <%= text_field_tag :search_query, params[:search_query] %>
         <%= submit_tag "Search", :name => nil %>
+
     </p>
 <% end %>
 

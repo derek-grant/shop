@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: Derek Grant
+  address: MyText
+   email: dere@example.org
+  pay_type: Check
+
+two:
+  name: MyString
+  address: MyText
+   email: MyString
+  pay_type: MyString
