@@ -1,1 +1,145 @@
-test files for derek git access
+test files for derek git access..had error messagae stash request ..
+Looking at cart code chapter 12
+added depot style sheet per book depot css
+
+
+  <div class="field">
+    <%= f.label :pay_type %><br />
+    <%= f.text_field :pay_type, prompt: 'PAYMENT_TYPES'  %>
+  </div>
+  
+    <div class="field">
+    <%= f.label :pay_type %><br />
+    <%= f.text_field :pay_type, prompt: 'PAYMENT_TYPES'  %>
+  </div>
+  
+    <div class="field">
+    <%= f.label :pay_type %><br />
+    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                 :prompt => 'Select a payment method' %>
+  </div>
+  
+  
+  then updated following 
+  Download depot_p/app/models/line_item.rb
+ 
+ from:
+class LineItem < ActiveRecord::Base
+  belongs_to :product
+  belongs_to :cart
+end  
+  
+  to:
+class LineItem < ActiveRecord::Base
+belongs_to :order
+belongs_to :product
+belongs_to :cart
+def total_price
+product.price * quantity
+end
+end
+
+next
+Download depot_p/app/models/order.rb
+from:
+class Order < ActiveRecord::Base
+  PAYMENT_TYPES = ["Check", "Credit Card", "Bank Draft"]
+  validates :name, :address, :email, presence:true
+  validates :pay_type, inclusion: PAYMENT_TYPES
+end
+
+to
+class Order < ActiveRecord::Base
+  has_many :line_items, :dependent => :destroy
+  PAYMENT_TYPES = ["Check", "Credit Card", "Bank Draft"]
+  validates :name, :address, :email, presence:true
+  validates :pay_type, inclusion: PAYMENT_TYPES
+end
+
+then modified 
+depot_p/app/controllers/orders_controller.rb
+depot_p/app/models/order.rb page 173
+
+def add_line_items_from_cart(cart)
+cart.line_items.each do |item|
+item.cart_id = nil
+line_items << item
+
+
+order controllers.rb
+line 31       redirect_to :products, :notice => "Your cart is empty!"
+ line 57....format.html { redirect_to(products, :notice =>
+ 
+ orders controller test.rb
+ line 20     LineItem.create(:cart => cart, :product => products(:ruby))
+ 
+ 
+ at end remobved these line from new.html in orders not in book up to page  iread
+ <%= render 'form' %>
+
+<%= link_to 'Back', orders_path %>
+
+
+
+
+on orders form  changes below per book e.g changed : before vs after size
+ 
+    <div class="field" >
+      <%= f.label :name %><br />
+      <%= f.text_field :name, :size => 40 %>
+    </div>
+    <div class="field" >
+      <%= f.label :address %><br />
+      <%= f.text_area :address, :rows => 3, :cols => 40 %>
+    </div>
+    <div class="field" >
+      <%= f.label :email %><br />
+      <%= f.email_field :email, :size => 40 %>
+    </div>
+    <div class="field" >
+      <%= f.label :pay_type %><br />
+      <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                   :prompt => 'Select a payment method' %>
+    </div>
+    <div class="actions" >
+      <%= f.submit 'Place Order' %>
+    </div>
+	
+	No longer crashing after this step below  ..coming up with new order title but no form
+	
+	went to re rake the database ...came back with syntax errors in the add order id to 
+	class AddOrderIdToLineItem < ActiveRecord::Migration
+  def self.up
+    add_column :line_items, :order_id, :integer
+  end
+
+  def self.down
+    remove_column :line_items, :order_id
+  end
+end
+
+order / new.html.erb     syntax error causing no display of order form should be = before render
+<h1>New Order</h1>
+  <div class="depot_form"
+       <fieldset>
+         <legend>Please enter your details</legend>
+         <% render 'form' %>
+       </fieldset>
+</div>
+
+<%= render 'form' %>
+
+
+orders controller.test.rb
+ line 20 was  session[card.id] = cart.id   changed to cart.id
+	
+issue still not allowing to place an order and redirect..is crashing...below solved this now 
+going to products page with thank you message	
+	line 32 need to confirm is correct 
+	    assert_redirected_to order_path(assigns(:order))
+		
+line 57  missing :
+        format.html { redirect_to(:products, :notice =>
+            'Thank you for your order.' ) }
+			
+	

@@ -2,7 +2,9 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.all
+    @orders = Order.paginate :page=>params[:page], :order=>'created_at desc',
+                             :per_page => 10
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +28,7 @@ class OrdersController < ApplicationController
   def new
     @cart = current_cart
     if @cart.line_items.empty?
-      redirect_to :products, notice: "Your cart is empty!"
+      redirect_to :products, :notice => "Your cart is empty!"
       return
     end
 
@@ -47,14 +49,19 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def create
     @order = Order.new(params[:order])
-
+    @order.add_line_items_from_cart(current_cart)
     respond_to do |format|
       if @order.save
-        format.html { redirect_to(@order, :notice => 'Order was successfully created.') }
-        format.xml  { render :xml => @order, :status => :created, :location => @order }
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        format.html { redirect_to(:products, :notice =>
+            'Thank you for your order.' ) }
+        format.xml { render :xml => @order, :status => :created,
+                            :location => @order }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @order.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @order.errors,
+                            :status => :unprocessable_entity }
       end
     end
   end
