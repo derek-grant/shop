@@ -18,7 +18,10 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
-      <h1>Welcome to Zi Fashions</h1>
+      <% if logged_in? %>
+          <h2>Welcome Back!</h2>
+      <% end %>
+      <h1>Zi Fashions</h1>
       <p> Zi Fashions is a website dedicated to providing you with unique fashions for Men and Ladies, Feel free to browse our site, sign up and buy! </p>
 
     </div>
